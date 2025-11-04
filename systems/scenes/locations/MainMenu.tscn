@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba8qaolkqq8ai"]
+
+[ext_resource type="Script" uid="uid://b1tvhh8bqbcva" path="res://systems/scripts/MenuPrincipal.gd" id="1_i26rj"]
+[ext_resource type="Texture2D" uid="uid://ddua35i7gnsib" path="res://systems/assets/images/menu_background.jpg" id="2_eiy7p"]
+[ext_resource type="AudioStream" uid="uid://dnsyknih4gcgc" path="res://systems/assets/audio/menu_music.ogg" id="3_h7a2f"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_i26rj")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+color = Color(0.1, 0.1, 0.12, 1)
+
+[node name="Background" type="TextureRect" parent="Node2D"]
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 709.0
+offset_bottom = 401.0
+texture = ExtResource("2_eiy7p")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="Node2D"]
+stream = ExtResource("3_h7a2f")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D"]
+offset_left = -7.0
+offset_top = 117.0
+offset_right = 139.0
+offset_bottom = 337.0
+theme_override_constants/separation = 20
+
+[node name="ButtonPlay" type="Button" parent="Node2D/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="ButtonOptions" type="Button" parent="Node2D/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="ButtonQuit" type="Button" parent="Node2D/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="LabelCredit" type="Label" parent="Node2D"]
+offset_left = 422.0
+offset_top = 358.0
+offset_right = 637.0
+offset_bottom = 387.0
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "Edited by Seth Pékégnio 2025"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ButtonCarnet" type="Button" parent="Node2D"]
+offset_left = 514.0
+offset_top = 211.0
+offset_right = 655.0
+offset_bottom = 354.0

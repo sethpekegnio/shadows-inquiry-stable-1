@@ -1,0 +1,134 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3k5m8oap2q1r"]
+
+[ext_resource type="Script" uid="uid://deov4h6huv6gr" path="res://systems/scripts/CarnetUI.gd" id="1"]
+
+[node name="CarnetUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 996.0
+offset_top = 584.0
+offset_right = -180.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="BookContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -562.0
+offset_top = -355.0
+offset_right = 7.0
+offset_bottom = 361.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BookPanel" type="Panel" parent="BookContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 139.0
+offset_top = 88.5
+offset_right = 546.0
+offset_bottom = 563.0
+
+[node name="PageContainer" type="MarginContainer" parent="BookContainer/BookPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = -5.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Page" type="Panel" parent="BookContainer/BookPanel/PageContainer"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="BookContainer/BookPanel/PageContainer/Page"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.5
+offset_right = -18.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/background_color = Color(0.95, 0.92, 0.85, 1)
+wrap_mode = 1
+
+[node name="NumPage" type="Label" parent="BookContainer/BookPanel/PageContainer/Page"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.5
+offset_top = 19.5
+offset_right = 20.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "1"
+horizontal_alignment = 1
+
+[node name="ButtonPrevious" type="Button" parent="BookContainer/BookPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 190.25
+offset_right = 42.0
+offset_bottom = 221.25
+grow_vertical = 2
+text = "◄"
+
+[node name="ButtonNext" type="Button" parent="BookContainer/BookPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = 195.25
+offset_right = -29.0
+offset_bottom = 226.25
+grow_horizontal = 0
+grow_vertical = 2
+text = "►"
+
+[node name="CloseButton" type="Button" parent="BookContainer/BookPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_top = 27.5
+offset_right = -30.0
+offset_bottom = 58.5
+grow_horizontal = 0
+text = "✖"
+
+[node name="SaveTimer" type="Timer" parent="."]
+wait_time = 2.0

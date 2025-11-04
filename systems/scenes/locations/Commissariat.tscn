@@ -1,0 +1,322 @@
+[gd_scene load_steps=15 format=3 uid="uid://ce5ppfa4egdee"]
+
+[ext_resource type="Script" uid="uid://bw3e4higu7j2j" path="res://systems/scripts/Commissariat.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://pausemenu123" path="res://systems/scenes/locations/PauseMenu.tscn" id="2"]
+[ext_resource type="AudioStream" uid="uid://fu5bec8ggeod" path="res://systems/assets/audio/MrKeyLMK.ogg" id="2_4vt15"]
+[ext_resource type="Script" uid="uid://cjul7h7www46n" path="res://systems/scripts/PorteCommissariat.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://dkb5elynujhwb" path="res://systems/scenes/locations/InventoryUI.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://4swxm8i7odxv" path="res://systems/scenes/locations/Player.tscn" id="5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vt15"]
+albedo_color = Color(0.55, 0.35, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gfpt8"]
+material = SubResource("StandardMaterial3D_4vt15")
+size = Vector3(1.5, 2.5, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="Material_door"]
+albedo_color = Color(0.55, 0.35, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2640j"]
+material = SubResource("Material_door")
+size = Vector3(1.5, 2.5, 0.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sol"]
+size = Vector3(40, 0.2, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sol"]
+size = Vector3(40, 0.2, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall"]
+size = Vector3(0.3, 3, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(0.69470215, 3.5527344, 0.5)
+
+[node name="Commissariat" type="Node3D"]
+script = ExtResource("1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4vt15")
+autoplay = true
+parameters/looping = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7675792, 0.6409541, 0, -0.6409541, 0.7675792, 0, 10.006487, 12.798307)
+current = true
+size = 25.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(-0.00020085751, -0.013347652, -0.23429595, -1.6578811, 1.6314712, -0.0045297067, 2.0276163, 1.316661, -0.0037264791, 10.500064, 1.1720366, -12.766779)
+mesh = SubResource("BoxMesh_gfpt8")
+skeleton = NodePath("../MeshInstance3D4")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(-7.459707e-05, -0.011704537, -0.6222987, -1.3409843, 1.6352097, -0.004531024, 1.6179904, 1.339671, -0.0037799946, -11.15844, 8.17111, -21.017315)
+mesh = SubResource("BoxMesh_gfpt8")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(-0.00013312604, -0.012737304, -0.38184518, -1.4907138, 1.6330755, -0.004531624, 1.8115587, 1.3284789, -0.003754258, -11.115234, 1.280701, -12.8678255)
+mesh = SubResource("BoxMesh_gfpt8")
+skeleton = NodePath("../MeshInstance3D5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(-2.579159e-05, -0.009983373, -1.0141534, -1.2068768, 1.637821, -0.004525489, 1.4445688, 1.3503045, -0.0038033784, 10.422379, 8.3248005, -21.09813)
+mesh = SubResource("BoxMesh_gfpt8")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(4.261659, 0, 0, 0, 1.4100322, -2.5628202, 0, 1.1850039, 3.0494928, 3.718896, 11.814529, -25.73033)
+mesh = SubResource("BoxMesh_2640j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 5)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("5")]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035811424, -9.536743e-07, -0.00083208084)
+mesh = SubResource("BoxMesh_sol")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_sol")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="bureauaccueilface" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.3079356e-07, 0, -1.2172451, 0, 1, 0, 9.855406, 0, -5.3207486e-08, 0, 0.34211826, 7.261053)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="WallEast" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1.9898914, 0, 0, 0, 3.007134, 20, 2.6466765, 0)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="bureauacceuildroite2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(15.374214, 0, 0, 0, 0.53313285, 0, 0, 0, 0.22122939, 17.54052, 0.9355844, 7.5059834)
+mesh = SubResource("BoxMesh_wall")
+skeleton = NodePath("../../ChiefOffice/Door/bureauacceuildroite/bureauacceuildroite")
+
+[node name="bureauacceuildroite" type="MeshInstance3D" parent="Walls/bureauacceuildroite2"]
+transform = Transform3D(0.982274, 0, 0, 0, 0.34736413, 0, 0, 0, 0.9902098, -2.174098, 2.5612125, -73.475815)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="WallWest" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1.9997785, 0, 0, 0, 2.9596865, -19.858002, 2.6575904, 0)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="Reception" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Desk" type="StaticBody3D" parent="Reception" groups=["interactable"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Reception/Desk"]
+transform = Transform3D(8.038647, 0, 0, 0, 0.88939625, 0, 0, 0, 0.77978224, -4.864459, 0.5, 12.556095)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Reception/Desk"]
+transform = Transform3D(0.6285701, 0, 0, 0, 1.7906044, 0, 0, 0, 1.1067762, -11.126606, 2.6311407, 19.302544)
+mesh = SubResource("BoxMesh_wall")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="murentresalle" type="MeshInstance3D" parent="Reception/Desk/MeshInstance3D2"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0276412, 0, 0, 0, 0.7325187, 0.05127716, 0.11339891, -11.308222)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="murentresalle" type="MeshInstance3D" parent="Reception/Desk/MeshInstance3D2/murentresalle"]
+transform = Transform3D(-4.371141e-08, 0, 1.3926477, 0, 1.027643, 0, -1.0000002, 0, -6.087454e-08, -7.0425167, -0.0412246, 2.2365553)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="murentresalle" type="MeshInstance3D" parent="Reception/Desk/MeshInstance3D2/murentresalle/murentresalle"]
+transform = Transform3D(-1.0000002, 0, -9.358594e-08, 0, 1.0276421, 0, 8.742279e-08, 0, -1.0704987, 0.039205134, -0.0412246, 35.223305)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="murentresalle" type="MeshInstance3D" parent="Reception/Desk/MeshInstance3D2/murentresalle/murentresalle/murentresalle"]
+transform = Transform3D(-1.0000002, 0, -9.358594e-08, 0, 1.0276426, 0, 8.7422805e-08, 0, -1.0704991, 13.437927, -0.0412246, 33.572594)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="mursalleinterro" type="MeshInstance3D" parent="Reception/Desk/MeshInstance3D2"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0560467, 0, 0, 0, 0.4152843, -0.06687927, 0.046306133, -19.483082)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Reception/Desk/MeshInstance3D2"]
+transform = Transform3D(0.6285701, 0, 0, 0, 0.9703633, 0, 0, 0, 1.011053, 34.17697, 0.06066549, 0.088189125)
+mesh = SubResource("BoxMesh_wall")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="murentresalle" type="MeshInstance3D" parent="Reception/Desk/MeshInstance3D2/MeshInstance3D2"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0276413, 0, 0, 0, 0.7325187, 0.05127716, 0.14212596, -11.308222)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="mursalleinterro" type="MeshInstance3D" parent="Reception/Desk/MeshInstance3D2/MeshInstance3D2"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0560467, 0, 0, 0, 0.4152843, -0.06687927, 0.046306133, -19.483082)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="Label3D" type="Label3D" parent="Reception/Desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6620698, 18.74715)
+text = "RECEPTION"
+font_size = 24
+
+[node name="ReceptionPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -10)
+
+[node name="MyOffice" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 5)
+
+[node name="Door" type="StaticBody3D" parent="MyOffice" groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -4)
+
+[node name="bureauacceuilgauche" type="MeshInstance3D" parent="MyOffice/Door"]
+transform = Transform3D(26.349123, 0, 0, 0, 0.51890635, 0, 0, 0, 0.14919767, 5.4589043, -0.35326886, -14.656423)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="bureauacceuilgauche" type="MeshInstance3D" parent="MyOffice/Door/bureauacceuilgauche"]
+transform = Transform3D(0.5804813, 0, 0, 0, -5.007218, 0, 0, 0, -0.42412865, 0.38819188, -0.42153645, -5.4186554)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="Label3D" type="Label3D" parent="MyOffice/Door"]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 22.313728, 3.000804, 1.6681433)
+modulate = Color(0.8, 0.6, 0.3, 1)
+text = "MY OFFICE"
+font_size = 20
+
+[node name="ChiefOffice" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 5)
+
+[node name="Door" type="StaticBody3D" parent="ChiefOffice" groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -4)
+
+[node name="bureauacceuildroite" type="MeshInstance3D" parent="ChiefOffice/Door"]
+transform = Transform3D(8.101257, 0, 0, 0, 1, 0, 0, 0, 1, -7.1214094, -0.9097719, 2.6113048)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="bureauacceuildroite" type="MeshInstance3D" parent="ChiefOffice/Door/bureauacceuildroite"]
+transform = Transform3D(1.9320033, 0, 0, 0, 1.5347939, 0, 0, 0, 0.22341669, 1.5663652, -0.9097719, 6.1925817)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="bureauacceuildroite" type="MeshInstance3D" parent="ChiefOffice/Door/bureauacceuildroite/bureauacceuildroite"]
+transform = Transform3D(1.1555169, 0, 0, 0, 0.04100524, 0, 0, 0, 1.118488, -2.1903825, 1.7138988, -23.124506)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="Label3D" type="Label3D" parent="ChiefOffice/Door"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6836758, 3.512968, -9.685127)
+modulate = Color(1, 0.8, 0.2, 1)
+text = "CHIEF'S OFFICE"
+font_size = 20
+
+[node name="DirecteurPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 7)
+
+[node name="InterrogationRoom" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Door" type="StaticBody3D" parent="InterrogationRoom" groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InterrogationRoom/Door"]
+transform = Transform3D(-4.3711392e-08, 0, -3.9415152, 0, 1.8680887, 0, 1.0000001, 0, -1.722891e-07, 0, 1.6224656, -21.50304)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InterrogationRoom/Door/MeshInstance3D"]
+transform = Transform3D(0.82310975, 0, -7.1054274e-14, 0, 1.1412287, 0, -1.4210855e-14, 0, 1.021402, 29.42687, -0.17070472, -0.044232078)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="Label3D" type="Label3D" parent="InterrogationRoom/Door"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.919721, 3.6166577, -15.55858)
+modulate = Color(0.7, 0.3, 0.3, 1)
+text = "INTERROGATION"
+font_size = 20
+
+[node name="ExitDoor" type="StaticBody3D" parent="." groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.25, -12)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ExitDoor"]
+transform = Transform3D(0.98808104, 0, 0, 0, 0.15922475, 0, 0, 0, 2.9613676, 3.8679848, 4.153853, 12.176101)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ExitDoor/MeshInstance3D"]
+transform = Transform3D(1.505001, 0, 0, 0, 0.69930184, 0, 0, 0, 1.0016136, 21.842491, 0.6274605, 0.03880386)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="Label3D" type="Label3D" parent="ExitDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.819605, 3.2101135, -2.1904964)
+modulate = Color(0.3, 0.8, 0.3, 1)
+text = "EXIT"
+font_size = 24
+
+[node name="Door" type="StaticBody3D" parent="." groups=["interactable"]]
+transform = Transform3D(4.199471, 0, 0, 0, 2.3739762, 0, 0, 0, 1, 3.685546, 0.44992137, -14.129605)
+script = ExtResource("3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
+transform = Transform3D(0.8439103, 0, 0, 0, 1, 0, 0, 0, 1, 0.034246802, 0.2763672, -0.33431053)
+shape = SubResource("BoxShape3D_door")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LabelInfo" type="Label" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 700.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "PRECINCT"
+autowrap_mode = 3
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer"]
+offset_left = 18.0
+offset_top = 79.0
+offset_right = 278.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(1, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 24
+text = "Day 1 | 08:00"
+
+[node name="LabelInteraction" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Click to move or interact"
+horizontal_alignment = 1
+
+[node name="LabelInstructions" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -150.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "PRECINCT LAYOUT:
+• Reception (center)
+• My Office (left)
+• Chief's Office (right)
+• Interrogation Room (back)
+• EXIT (far left)"
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="PauseMenu" parent="." instance=ExtResource("2")]
+
+[node name="InventoryUI" parent="." instance=ExtResource("4")]

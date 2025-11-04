@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://daqx0sr454e7u"]
+
+[ext_resource type="Script" path="res://systems/scripts/Appartement.gd" id="1_efb44"]
+
+[node name="Appartement" type="Node2D"]
+script = ExtResource("1_efb44")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54509807, 0.27058825, 0.07450981, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+offset_left = 446.0
+offset_top = 316.0
+offset_right = 1142.0
+offset_bottom = 634.0
+text = "Début du jeu – Appartement"

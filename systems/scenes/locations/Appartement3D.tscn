@@ -1,0 +1,304 @@
+[gd_scene load_steps=21 format=3 uid="uid://g3vllyqcblg8"]
+
+[ext_resource type="Script" uid="uid://cs4sa0tnqce65" path="res://systems/scripts/Appartement3D.gd" id="1"]
+[ext_resource type="Script" uid="uid://bh4hbqb28jy5t" path="res://systems/scripts/Telephone.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://4swxm8i7odxv" path="res://systems/scenes/locations/Player.tscn" id="2_player"]
+[ext_resource type="AudioStream" uid="uid://brey03rcrf3wb" path="res://systems/assets/audio/MrKeyenferLMK.ogg" id="2_qxh2h"]
+[ext_resource type="Script" uid="uid://cgbhxwhk0epk0" path="res://systems/scripts/Porte.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://pausemenu123" path="res://systems/scenes/locations/PauseMenu.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dkb5elynujhwb" path="res://systems/scenes/locations/InventoryUI.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://8sdx2jyxw1hn" path="res://systems/scenes/ui/PorteMenu.tscn" id="8_ese21"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+size = Vector3(2, 0.8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sol"]
+size = Vector3(20, 0.2, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sol"]
+size = Vector3(20, 0.2, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall"]
+size = Vector3(0.3, 3, 15)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qxh2h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_table"]
+size = Vector3(3.352295, 1.1446823, 1.2344666)
+
+[sub_resource type="StandardMaterial3D" id="Material_phone"]
+albedo_color = Color(0.8, 0.1, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_phone"]
+material = SubResource("Material_phone")
+size = Vector3(0.15, 0.08, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_phone"]
+size = Vector3(0.18326417, 0.09419922, 0.27937013)
+
+[sub_resource type="StandardMaterial3D" id="Material_door"]
+albedo_color = Color(0.55, 0.35, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_door"]
+material = SubResource("Material_door")
+size = Vector3(1.5, 2.5, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(1.2856445, 2.7149658, 0.15)
+
+[node name="Appartement3D" type="Node3D"]
+script = ExtResource("1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qxh2h")
+autoplay = true
+parameters/looping = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.63962543, 0.7686868, 0, -0.7686868, 0.63962543, 2.7691407, 10.818878, 7.4037414)
+current = true
+size = 18.0
+
+[node name="Camera3Dsdb" type="Camera3D" parent="."]
+transform = Transform3D(-2.1561025e-08, -0.86988264, 0.49325877, -3.8023778e-08, 0.49325877, 0.86988264, -1, -1.7763568e-15, -4.3711392e-08, -2.8115025, 10.423111, -4.865489)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 5)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009541988, 0)
+
+[node name="Lit" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8081913, 0, 0, 0, 1.0326921, 0, 0, 0, 4.5882998, -5.7631474, 0.41183716, 5.138361)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../WallLeft2/MeshInstance3D2")
+
+[node name="Table_de_chevet_droite" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.38213056, 0, 0, 0, 1.0830293, 0, 0, 0, 1.0840994, -3.4850683, 0.55889523, 6.879319)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../Lit")
+
+[node name="Table_de_chevet_gauche" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6194827, 0, 0, 0, 1.2363786, 0, 0, 0, 1.0412005, -8.263889, 0.6515639, 6.9203367)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../WallLeft2/MeshInstance3D2")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.99372756, 0, 0, 0, 0.99372756, 0, 0, 0, 0.99372756, 0, 0, 0)
+mesh = SubResource("BoxMesh_sol")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_sol")
+
+[node name="WallLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.013, 0, 0, 0, 1.8043035, 0, 0, 0, 1.013, -10, 2.4808109, 0)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="WallLeft2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0261691, 0, 0, 0, 0.12332217, 0, 0, 0, 1.0261691, -1.7992268, 4.9196806, 0)
+mesh = SubResource("BoxMesh_wall")
+skeleton = NodePath("../WallLeft")
+
+[node name="WallLeft2" type="MeshInstance3D" parent="WallLeft2"]
+transform = Transform3D(0.88908255, 0, 0, 0, 12.9066105, 0, 0, 0, 0.36501393, 0.0058918, -20.53561, 4.6639986)
+mesh = SubResource("BoxMesh_wall")
+skeleton = NodePath("../WallLeft")
+
+[node name="WallLeft3" type="MeshInstance3D" parent="WallLeft2"]
+transform = Transform3D(0.46175668, 0, 0, 0, -14.051431, 0, 0, 0, 0.06923223, 0.07206452, -20.89086, -6.8758726)
+mesh = SubResource("BoxMesh_wall")
+skeleton = NodePath("../WallLeft")
+
+[node name="armoire_chambre" type="MeshInstance3D" parent="WallLeft2"]
+transform = Transform3D(1.2101789, 0, 0, 0, 47.04977, 0, 0, 0, 0.9744976, -5.8230934, -21.52525, -0.82552564)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="Douche" type="MeshInstance3D" parent="WallLeft2/armoire_chambre"]
+transform = Transform3D(0.80510056, 0, 0, 0, 1.043531, 0, 0, 0, 3.103596, -0.8312335, 0.047470003, -4.904648)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="Douche" type="MeshInstance3D" parent="WallLeft2/armoire_chambre/Douche"]
+transform = Transform3D(1.8266866, 0, 0, 0, 0.27073938, 0, 0, 0, 0.5226648, 12.083878, -0.23203889, -0.29446888)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="Douche" type="MeshInstance3D" parent="WallLeft2/armoire_chambre/Douche/Douche"]
+transform = Transform3D(0.59627855, 0, 0, 0, 0.06709952, 0, 0, 0, 0.5210134, -0.8932992, 1.5965313, -0.29446888)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="horloge" type="MeshInstance3D" parent="WallLeft2/armoire_chambre/Douche/Douche/Douche"]
+transform = Transform3D(1.0638081, 0, 0, 0, -6.4754757e-09, -10.066058, 0, 0.14814149, -4.4000095e-07, 2.724187, 4.8178444, -0.029064178)
+mesh = SubResource("CylinderMesh_qxh2h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="WallLeft4" type="MeshInstance3D" parent="WallLeft2"]
+transform = Transform3D(0.47693786, 0, 0, 0, -13.0937, 0, 0, 0, 0.22041705, 0.0034046173, -20.160316, -2.1249907)
+mesh = SubResource("BoxMesh_wall")
+skeleton = NodePath("../WallLeft")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="WallLeft2"]
+transform = Transform3D(3.9686396, 0, 0, 0, 20.38802, 0, 0, 0, 1.2237898, 3.8897748, -31.20602, 6.652859)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../../Table/MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="WallLeft2"]
+transform = Transform3D(1.2751026, 0, 0, 0, -10.315248, 0, 0, 0, -1.1242173, 9.851377, -22.463966, -1.3164282)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../../Table/MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="WallLeft2/MeshInstance3D3"]
+transform = Transform3D(0.734675, 0, 0, 0, -1.0227168, 0, 0, 0, -3.9346526, 0.43420506, 1.2779932, -3.0814538)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../../Table/MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="WallLeft2/MeshInstance3D3/MeshInstance3D3"]
+transform = Transform3D(0.29773176, 0, 0, 0, -1.022717, 0, 0, 0, -0.74764407, 0.675333, 0.7801375, 0.0163576)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../../Table/MeshInstance3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WallLeft2"]
+transform = Transform3D(1.5195256, 0, 0, 0, 16.625996, 0, 0, 0, 1.263816, 9.792669, -33.40311, -1.2892702)
+mesh = SubResource("BoxMesh_table")
+skeleton = NodePath("../../Table/MeshInstance3D")
+
+[node name="WallBack" type="MeshInstance3D" parent="WallLeft2"]
+transform = Transform3D(-4.0743085e-08, 0, -0.53503174, 0, 13.566621, 0, 0.93209213, 0, -2.3386981e-08, -4.06975, -19.693758, -1.4875402)
+mesh = SubResource("BoxMesh_wall")
+skeleton = NodePath("../../WallBack")
+
+[node name="WallRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.03, 0, 0, 0, 1.7540532, 0, 0, 0, 1.03, 10, 2.581461, 0)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="WallBack" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.2749736e-08, 0, -1.3462933, 0, 1.717153, 0, 0.978, 0, -5.8848347e-08, 0.017474413, 2.627556, -7.4841213)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="WallBack" type="MeshInstance3D" parent="WallBack"]
+transform = Transform3D(0.97800136, 0, -5.684342e-14, 0, 0.99070287, 0, 1.4210855e-14, 0, 1.0023984, 15.374306, -0.039415002, 0.012181446)
+mesh = SubResource("BoxMesh_wall")
+
+[node name="Table" type="StaticBody3D" parent="." groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.196869, 0.4, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(0.31872174, 0, 0, 0, 5.2966347, 0, 0, 0, 2.2944944, 1.3207788, 1.8545758, -0.6722102)
+mesh = SubResource("BoxMesh_table")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.201828, 0.6099597, 1.6628857)
+shape = SubResource("BoxShape3D_table")
+
+[node name="Label3D" type="Label3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48333073, 0.74506545, 0)
+text = "TABLE"
+font_size = 24
+
+[node name="Telephone" type="StaticBody3D" parent="." groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0433755, 1.8216555, -6.682601)
+script = ExtResource("2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Telephone"]
+transform = Transform3D(4.783309, 0, 0, 0, 4.230437, 0, 0, 0, 3.4722526, 0, 0.060717225, 0)
+mesh = SubResource("BoxMesh_phone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Telephone"]
+transform = Transform3D(4.4314775, 0, 0, 0, 5.0097423, 0, 0, 0, 2.654867, 0.01149559, 0.035567164, -0.0024952888)
+shape = SubResource("BoxShape3D_phone")
+
+[node name="Label3D" type="Label3D" parent="Telephone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.070632935, 0.37889713, 0)
+modulate = Color(1, 0.2, 0.2, 1)
+text = "📞 PHONE"
+font_size = 22
+
+[node name="Door" type="StaticBody3D" parent="." groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.25, -7.4)
+script = ExtResource("3")
+
+[node name="Porte_sdb" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(-4.3250242e-08, 0, 1.1048672, 0, 1.8566527, 0, -1.9829478, 0, -9.67881e-08, -6.784729, 1.1688573, 2.0836177)
+mesh = SubResource("BoxMesh_door")
+skeleton = NodePath("../porte principal")
+
+[node name="porte principal" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1.6534346, 0, 0, 0, 1.8406787, 0, 0, 0, 3.3136322, 2.0481968, 1.1874561, -0.04464197)
+mesh = SubResource("BoxMesh_door")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
+transform = Transform3D(1.8597966, 0, 0, 0, 1.535084, 0, 0, 0, 1.6901385, 2.0728402, 1.3054972, 0.22381449)
+shape = SubResource("BoxShape3D_door")
+
+[node name="Label3D" type="Label3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.159708, 2.9208627, 0.2796669)
+modulate = Color(0.8, 0.6, 0.3, 1)
+text = "🚪 DOOR"
+font_size = 30
+
+[node name="Porte_chambre" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1.2882967e-07, 0, -0.7383007, 0, 1.9799842, 0, 1.8268095, 0, 1.8051642e-07, -6.8312263, 1.1500971, 8.105604)
+mesh = SubResource("BoxMesh_door")
+skeleton = NodePath("../Porte_sdb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LabelInfo" type="Label" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 700.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Loading..."
+autowrap_mode = 3
+
+[node name="LabelInteraction" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Click to move"
+horizontal_alignment = 1
+
+[node name="LabelInstructions" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -150.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "CONTROLS:
+• Click to MOVE
+• Keys 1-9,0: Select item
+• ESC: Pause menu"
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="PauseMenu" parent="." instance=ExtResource("4")]
+
+[node name="InventoryUI" parent="." instance=ExtResource("5")]
+
+[node name="PorteMenuUI" parent="." instance=ExtResource("8_ese21")]

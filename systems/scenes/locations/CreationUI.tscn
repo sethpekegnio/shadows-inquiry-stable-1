@@ -1,0 +1,252 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgqgssdo7de0y"]
+
+[ext_resource type="Script" path="res://systems/scripts/creation_ui.gd" id="1_avh82"]
+
+[node name="CreationUI" type="Popup"]
+size = Vector2i(900, 700)
+visible = true
+script = ExtResource("1_avh82")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "CREATE YOUR DETECTIVE"
+horizontal_alignment = 1
+
+[node name="HBoxMain" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="PreviewPanel" type="Panel" parent="Panel/VBoxContainer/HBoxMain"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="VBoxPreview" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxMain/PreviewPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelPreview" type="Label" parent="Panel/VBoxContainer/HBoxMain/PreviewPanel/VBoxPreview"]
+layout_mode = 2
+text = "PREVIEW"
+horizontal_alignment = 1
+
+[node name="PreviewCharacter" type="ColorRect" parent="Panel/VBoxContainer/HBoxMain/PreviewPanel/VBoxPreview"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="LabelInfo" type="Label" parent="Panel/VBoxContainer/HBoxMain/PreviewPanel/VBoxPreview"]
+layout_mode = 2
+text = "Detective Profile
+Age: 30
+Build: Medium"
+horizontal_alignment = 1
+
+[node name="OptionsPanel" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxMain"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="SexeGroup" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel"]
+layout_mode = 2
+
+[node name="LabelSexe" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/SexeGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "GENDER"
+
+[node name="HBoxSexe" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/SexeGroup"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BtnMale" type="Button" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/SexeGroup/HBoxSexe"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "Male"
+
+[node name="BtnFemale" type="Button" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/SexeGroup/HBoxSexe"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "Female"
+
+[node name="AgeGroup" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel"]
+layout_mode = 2
+
+[node name="LabelAge" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/AgeGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "AGE: 30"
+
+[node name="SliderAge" type="HSlider" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/AgeGroup"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+min_value = 18.0
+max_value = 60.0
+value = 30.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="CorpulenceGroup" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel"]
+layout_mode = 2
+
+[node name="LabelCorpulence" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/CorpulenceGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "BUILD: Medium"
+
+[node name="SliderCorpulence" type="HSlider" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/CorpulenceGroup"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+min_value = -2.0
+max_value = 2.0
+step = 1.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="HairGroup" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel"]
+layout_mode = 2
+
+[node name="LabelHair" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/HairGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "HAIR STYLE"
+
+[node name="HBoxHair" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/HairGroup"]
+layout_mode = 2
+
+[node name="BtnPrevHair" type="Button" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/HairGroup/HBoxHair"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "<"
+
+[node name="LabelHairNum" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/HairGroup/HBoxHair"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnNextHair" type="Button" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/HairGroup/HBoxHair"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = ">"
+
+[node name="BeardGroup" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel"]
+layout_mode = 2
+
+[node name="LabelBeard" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/BeardGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "BEARD STYLE"
+
+[node name="HBoxBeard" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/BeardGroup"]
+layout_mode = 2
+
+[node name="BtnPrevBeard" type="Button" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/BeardGroup/HBoxBeard"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "<"
+
+[node name="LabelBeardNum" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/BeardGroup/HBoxBeard"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnNextBeard" type="Button" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/BeardGroup/HBoxBeard"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = ">"
+
+[node name="MoustacheGroup" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel"]
+layout_mode = 2
+
+[node name="LabelMoustache" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/MoustacheGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "MOUSTACHE STYLE"
+
+[node name="HBoxMoustache" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/MoustacheGroup"]
+layout_mode = 2
+
+[node name="BtnPrevMoustache" type="Button" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/MoustacheGroup/HBoxMoustache"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "<"
+
+[node name="LabelMoustacheNum" type="Label" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/MoustacheGroup/HBoxMoustache"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnNextMoustache" type="Button" parent="Panel/VBoxContainer/HBoxMain/OptionsPanel/MoustacheGroup/HBoxMoustache"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = ">"
+
+[node name="ButtonsBottom" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnCancel" type="Button" parent="Panel/VBoxContainer/ButtonsBottom"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+text = "Cancel"
+
+[node name="BtnConfirm" type="Button" parent="Panel/VBoxContainer/ButtonsBottom"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+text = "CONFIRM"

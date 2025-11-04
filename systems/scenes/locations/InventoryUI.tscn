@@ -1,0 +1,242 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkb5elynujhwb"]
+
+[ext_resource type="Script" uid="uid://bewbv3a7ift82" path="res://systems/scripts/InventoryUI.gd" id="1"]
+
+[node name="InventoryUI" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 289.0
+offset_top = 8.0
+offset_right = 1015.0
+offset_bottom = 68.0
+
+[node name="HBoxSlots" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Slot0" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="Label" parent="Panel/HBoxSlots/Slot0/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot1" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot1/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot1/VBox"]
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="Slot2" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot2/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot2/VBox"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="Slot3" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot3/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot3/VBox"]
+layout_mode = 2
+text = "4"
+horizontal_alignment = 1
+
+[node name="Slot4" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot4/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot4/VBox"]
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+
+[node name="Slot5" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot5/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot5/VBox"]
+layout_mode = 2
+text = "6"
+horizontal_alignment = 1
+
+[node name="Slot6" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot6/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot6/VBox"]
+layout_mode = 2
+text = "7"
+horizontal_alignment = 1
+
+[node name="Slot7" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot7/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot7/VBox"]
+layout_mode = 2
+text = "8"
+horizontal_alignment = 1
+
+[node name="Slot8" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot8/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot8/VBox"]
+layout_mode = 2
+text = "9"
+horizontal_alignment = 1
+
+[node name="Slot9" type="Panel" parent="Panel/HBoxSlots"]
+custom_minimum_size = Vector2(67, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxSlots/Slot9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="ColorRect" parent="Panel/HBoxSlots/Slot9/VBox"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="Label" type="Label" parent="Panel/HBoxSlots/Slot9/VBox"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1

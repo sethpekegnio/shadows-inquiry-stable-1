@@ -1,0 +1,3 @@
+Accède à C:\Users\niko9\Documents\shadows-inquiry (Godot 4.5.1). Lis TOUT le projet : structure, TOUS les .gd (ShopUI.gd, PortInteract.gd, PortMenu.gd, Telephone.gd, etc.). Comprends le jeu entièrement (Shadows Inquiry).pas de Python en Godot. Maj PROJET.md seulement pas de  documentations en tout genre. Dis moi si tu vois des problèmes?
+
+  
