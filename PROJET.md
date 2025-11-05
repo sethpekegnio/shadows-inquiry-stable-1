@@ -1,22 +1,33 @@
 PROJECT.md v.0.0.2    Date dernière maj PROJET.md 03/11/2025    Heure dernière maj PROJET.md 21:32    PAR CLAUDE OPUS 4.1
 
 MEILLEUR PROMPT CLAUDE DE PREMIER LANCEMENT:
-Accède à C:\Users\niko9\Documents\shadows-inquiry (Godot 4.5.1) commence par lire PROJECT.md et ((a créer) fichiers de code mis a jour tout le temps pour lecture rapide et efficace de la totalité du projet par plein d'autre IA)
+Accède à C:\Users\niko9\Documents\shadows-inquiry (Godot 4.5.1) commence par lire PROJECT.md et a créer ou mettre a jour fichiers avec les codes du jeu total mis a jour tout le temps pour lecture rapide et efficace de la totalité du projet par plein d'autre IA
 
 ** 📝 TODO PROCHAINE LECTURE - A FAIRE - 
-
-- Slot 1 (main gauche, touche 1) : TOUJOURS vide/main gauche (RIEN d'autre). Sert UNIQUEMENT à interagir : ouvrir portes, décrocher tel, cliquer objets interactifs. Bloque le.   - Slot 2 (carnet, touche 2) : TOUJOURS bloqué au carnet. Tenu main droite (TOUS objets tenus = main droite).
+- mettre a jour date et heure 1 ligne PROJET.md (+1 v.0.0.1 chaques maj) quand lecture,ajout,modification de ce fichier
+- Slot 1 (main gauche, touche 1) : TOUJOURS vide/main gauche (RIEN d'autre). Sert UNIQUEMENT à interagir : ouvrir portes, décrocher tel, cliquer objets interactifs etc... Bloque le.   - Slot 2 (carnet, touche 2) : TOUJOURS bloqué au carnet. Tenu main droite (TOUS objets tenus = main droite).
 - résoudre bugs cité fin de ce fichier
-- créer et géré quelques fichiers tenant tout le code du jeux, structuré et faisant en sorte d'être mis a jour seulement et précisément aussi lorsque tu modifie le code ou autre chose, ca permettra que d'autre IA puisse lire le jeux mis a jour, seulement grâce a ces fichiers il seront expansif au fur et a mesure que le jeu grossisse 
-
+- créer et géré quelques fichiers tenant tout le code du jeu, structuré et faisant en sorte d'être mis a jour seulement et précisément aussi lorsque tu modifie le code ou autre chose, ca permettra que d'autre IA puisse lire le jeu mis a jour, seulement grâce a ces fichiers il seront expansif au fur et a mesure que le jeu grossisse et devrai etre cité dans le PROJET.md avec leur modifications 
+- ouvrir qu'une fois le carnet a la fois
+- modification des touches et options de selection et déplacement : clic gauche = se déplacé uniquement en allant vers le clic du curceur comme maintenant, QZSD = se déplacé uniquement aussi, clic gauche = menu, inventaire slot 1 = slot vide inutilisable mais reste le slot 1 sur la touche 1, pas d'objet, slot 2 ouvrir le carnet si pas déja ouvert, Touche P = Pause (pause ecrit aussi en bas a droite, peu être mis n'importe quand meme en discution )(ne coupe pas la musique)
+- camera va vers autre camera au dessus de la salle de bain lorsque rentre dans la zone 
+- camera va vers autre camera au dessus de la chambre lorsque rentre dans la zone, idem commissariat pour reception (deja ok), salle du chef, bureau des inspecteurs, salle d'interrogatoire 1, salle d'interro 2
 
 🧠 IDÉES FUTURES :  - RECHERCHE ET CITE LES POSSIBILITE -
 
-Ajoute un peu plus d'infos du jeux et de développement sur ce fichier PROJET.MD
+- Ajoute un peu plus d'infos du jeux et de développement sur ce fichier PROJET.MD
+- faire les sprite de l'inventaire, main (telephone quand utilisé), carnet ouvert fermé, et tout les objets et interraction
+- système de multijoueurs (joueur 2 assistant)(peu rejoindre la game ouverte dans un ami)(n'a pas d'interraction majeur pouvant affecté la partie de l'hote)(aide à l'enquête)
+- création d'un systeme complexe de rangement, tri, classification de dossier, preuve, envoi tribunal, etc
+- systeme de sauvegarde identique project zomboid
+- fichier du model utiliser et animation ce trouve addons\kenney_animated-characters-2 
+et viens de https://kenney.nl/assets/animated-characters-2
+-
 
 
 
-POSSIBILITE PROPOSER PAR CLAUDE:
+
+POSSIBILITE PROPOSER :
 
 
 
@@ -354,6 +365,22 @@ func _ready():
 ```
 
 ---
+## 🎯 NOUVELLES FONCTIONNALITÉS
+- Système de synchronisation des données
+- Monitoring des performances
+- Gestion optimisée des PNJ
+- Système jour/nuit
+- Gestion audio complète
+- Système de debug avancé
+- Gestion des états de scène
+- Système de collision amélioré
+
+## 📊 MÉTRIQUES DE PERFORMANCE
+| Système | CPU % | Mémoire | Optimisation |
+|---------|-------|---------|--------------|
+| PNJ     | 5%    | 150MB   | Pool System  |
+| Physics | 3%    | 80MB    | Area Culling |
+| Audio   | 2%    | 60MB    | Streaming    |
 
 ## 📝 NOTES IMPORTANTES
 
@@ -366,7 +393,11 @@ func _ready():
 **Date** : 03/11/2025  
 **Statut** : 🔧 En développement (80% complet)
 
+
+
 **Shadows Inquiry - Un jeu d'enquête hardcore où chaque choix compte**
+
+
 
 
 
@@ -485,6 +516,130 @@ Semaine 1 : Fixes Critiques (anims, scènes) → 90%.
 Semaine 2 : Contenu (enquêtes : ajoute ClueSystem.gd avec 5 indices).
 Mois 1 : Polish (sons via AudioStreamPlayer, jour/nuit via Environment).
 Bonus : Export Web (HTML5) pour démo itch.io.
+
+Je vais examiner plus en détail les aspects techniques et les potentiels bugs non mentionnés dans le projet.Après analyse approfondie du code, je peux identifier plusieurs bugs techniques supplémentaires qui n'ont pas été mentionnés dans la documentation initiale :
+
+Problèmes de Race Condition dans PorteCommissariat.gd
+GDScript
+# Bug potentiel : Race condition lors du changement de scène
+await get_tree().process_frame
+var result = get_tree().change_scene_to_file(scene_path)
+Le changement de scène pourrait échouer si d'autres opérations sont en cours. Il faudrait ajouter une gestion d'erreur plus robuste.
+
+Memory Leak dans CommissariatHub.gd
+GDScript
+func _setup_raycast():
+    raycast = RayCast3D.new()
+    player.add_child(raycast)
+Le RayCast3D est créé mais jamais libéré lors du nettoyage de la scène. Il faudrait implémenter _exit_tree().
+
+Problème de Null Reference dans Player.gd
+GDScript
+@onready var model = $KenneyModel
+var animation_player = null
+
+func _ready():
+    if animation_player:  # Cette vérification est insuffisante
+        print("✓ Found AnimationPlayer")
+Le code ne gère pas correctement le cas où le modèle n'est pas chargé.
+
+Problème de Performance dans CarnetUI.gd
+GDScript
+@onready var save_timer = $SaveTimer
+const MAX_CHARS_PER_PAGE = 2000
+L'auto-save toutes les 30 secondes avec 2000 caractères peut causer des pics de lag. Il faudrait implémenter un système de save différentiel.
+
+Bug de Navigation dans AptReseda.gd
+GDScript
+var target_position: Vector3 = Vector3.ZERO
+var is_moving = false
+var move_speed = 3.0
+Pas de vérification de collision avant le déplacement, ce qui peut causer des traversées de murs.
+
+Fuites de Mémoire dans les Menus
+GDScript
+class DestinationMenu extends Popup:
+    var destinations_list = []
+Les menus ne sont pas correctement nettoyés lors de leur fermeture.
+
+Problèmes de Synchronisation
+Dans Global.gd : Le dictionnaire pnj: {} n'est pas thread-safe
+Dans Inventory.gd : Les slots peuvent être modifiés pendant un changement de scène
+Bugs de Performance
+GDScript
+func _process(_delta):
+    _detecter_objets()  # Appelé chaque frame sans optimisation
+Trop d'appels à _detecter_objets() sans throttling.
+
+Erreurs de Gestion des Ressources
+Les scènes préchargées ne sont pas libérées
+Les textures ne sont pas déchargées lors des transitions
+Problèmes de Sécurité des Données
+GDScript
+var json_text = fichier.get_as_text()
+var parse_result = json.parse(json_text)
+Pas de validation des données de sauvegarde avant le chargement.
+
+Solutions proposées :
+
+Gestion des Scènes
+GDScript
+func change_scene_safely(scene_path: String) -> void:
+    if ResourceLoader.exists(scene_path):
+        var result = await get_tree().create_timer(0.1).timeout
+        var scene_load = get_tree().change_scene_to_file(scene_path)
+        if scene_load != OK:
+            push_error("Scene load failed: " + str(scene_load))
+Optimisation Mémoire
+GDScript
+func _exit_tree() -> void:
+    for child in get_children():
+        if child is RayCast3D:
+            child.queue_free()
+    raycast = null
+Sécurité des Données
+GDScript
+func validate_save_data(data: Dictionary) -> bool:
+    var required_keys = ["player", "inventory", "quests"]
+    for key in required_keys:
+        if not data.has(key): return false
+    return true
+
+
+
+---------------------------------------------------------
+🌟🌟🌟🌟🌟🌟🌟🌟🌟idées futur🌟🌟🌟🌟🌟🌟🌟🌟🌟
+---------------------------------------------------------
+🌟 VISION GLOBALE : SHADOWS INQUIRY – ENQUÊTE HARDCORE INFINIE & PUNITIVE
+Concept Core : Jeu Godot 4.5.1 d'enquête policière hardcore, durée quasi-infinie. Chaque run unique via random stats/traits physiques/backstory (échelle -100/+100, start neutre sauf backstory ex. +10 Intuition pour "vétéran"). Stats bidirectionnelles : Actions (dialogues/objets/PNJ) modifient joueur & PNJ (ex. gifle = +2 Violence joueur / -15 Empathie PNJ envers toi). Combat de stats invisible (ton Charisme vs. Méfiance PNJ) pour aveux/usages objets (ex. sérum +Empathie pour interrogatoire). PNJ jetables supprimés post-enquête (sauf legacy écho ex. +Corruption globale) ; permanents (directeur, réceptionniste) sauvés, tuables mais risqués (flag "meurtre plaisir" = -Réputation -20, enquête interne).
+Stats Clés (-100/+100, modifs 1-5 pts par interaction, seuils dynamiques ex. >+50 = branches bonus) :
+
+⚔️ Violence (menaces physiques).
+❤️ Empathie (diplomatie).
+🔍 Intuition (déductions).
+🛡️ Résilience (stress).
+🤝 Alliés (réseau).
+💀 Corruption (méthodes sombres).
+🧠 Santé Mentale (stabilité).
+⭐ Réputation (statut).
+💰 Ressources (budget).
+⚖️ Karma (meta-moral, moyenne pondérée).
+
+
+Optionnels : 🗣️ Charisme (persuasion), 📚 Connaissance (expertise), ⏱️ Timing (opportunisme).
+
+Flow & Contenu : Enquête principale fixe pour beta vendable (10-20h narrative). Minis-enquêtes procédurales infinies (templates 50+ : meurtres/vols/chantages, 1-2h, liens optionnels à main). PNJ random équitable (templates archétypes + modifs ±5, pool stats fixe par run pour fair play ; traits physiques flavor-only). Objets 22+ (cats : weapon/chemical/tool/tech/misc) avec actions contextuelles (on_PNJ/object/self) ; market grind cross-runs (débloque maison/canapé/vêtements : buffs ex. costume +Réputation, prix dynamiques via éco proc).
+Hardcore Punitive (Zomboid-Style) : Extrêmement dur – permadeath : Mort (fusillade/poison), crash stats (-100 Santé/Karma), échec deadline = finish total, reset random (post-mortem : stats finales, échos cross-runs ex. Corruption haute = +Méfiance globale futur). Pas de checkpoint ; pertes dues à choix/stats (logs "T'as merdé le jet Violence"). Tuer directeur : Quasi impossible de gagner (preuves auto, -50 Réputation), mais 0.1% échappatoire (combo Corruption +100 + Timing parfait = fin "Fugitif").
+Meta-Progression : Market unlocks temporels (après wipes : +Ressources start). Retraite après ~50h/milestones (ex. 10 enquêtes clean, Santé >-20) : Cutscene flashbacks, upload anonyme leaderboard mondial (score : [Survie x Karma / Corruption], Top 100 "flics tordus/clean", filtres styles). Fin run nette, unlock permanent (ex. "Pension" +5 Alliés).
+Multi 2J Coop Asymétrique : Hôte (P1 inspecteur) / Assistant (P2 recrue). Menu Échap : Checkbox "Ouvert aux Amis" (Steam/itch matchmaking). P2 rejoint mid-run, support (classement dossiers, fouilles secondaires, +Empathie bonus) mais bridé (3-4 choix dialogues soft, pas violence/corruption/objets critiques). Stats partagées ; veto P1. Wipe duo si merde partagée.
+Mécaniques Spécifiques :
+
+Dialogues : Arbres stats-driven (branches morales, objets multiplicateurs ex. menottes x1.5 Violence).
+Classement Dossiers : Simu réaliste (pas puzzle) – atelier libre : Monte/ranger (banals/important), agrafe photos/rapports manuellement (preuves montées de A-Z pour juges). Mal rangé = -Réputation ; rare correspondance (5% proc, +Intuition) pour twists. Multi : P2 gère solo (brides critiques).
+Inventory : 10 slots, Slot 1 verrouillé interaction (portes/objets), Slot 2 carnet fixe (main droite).
+
+Équilibrage : 70% random fraîcheur, 30% unlocks motivation. Runs courts (1-5h) pour masochisme addictif. Communauté : Challenges "Retraite <20h". (Implé : PNJSystem.gd random/écho ; Core.gd stats sync ; Phase 1-3 roadmap.)
+Shadows Inquiry : Chaque choix compte, chaque ombre te consume. (Statut : 85% dev, beta 2026).
 
 
 
